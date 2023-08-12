@@ -1,0 +1,12 @@
+apiVersion: argocd.workload.com/v1beta1
+kind: Instance
+metadata:
+  labels:
+    app.kubernetes.io/name: instance
+    app.kubernetes.io/instance: instance-sample
+    app.kubernetes.io/part-of: workload-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: workload-operator
+  name: instance-sample
+spec:
+  # TODO(user): Add fields here
