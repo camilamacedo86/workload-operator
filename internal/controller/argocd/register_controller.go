@@ -106,6 +106,10 @@ func (r *RegisterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 			r.Log.Error(err, "Failed to create Register Instance CR")
 			return ctrl.Result{}, err
 		}
+
+		// NOTE: We re-fetching here and prior update the status the CR
+		// in order to avoid the common scenario:  "the object has been modified, please apply
+		// your changes to the latest version and try again" which would re-trigger the reconciliation
 		if err := r.Get(ctx, req.NamespacedName, RegisterCR); err != nil {
 			r.Log.Error(err, "Failed to fetch Register Instance CR")
 			return ctrl.Result{}, err
